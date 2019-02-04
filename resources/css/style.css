@@ -1,0 +1,779 @@
+/* --------------------- */
+/* BASIC SETUP */
+/* --------------------- */
+/*INDAGARE - l'asterisco viene  usato come selezionatore universale, ciò significa che tutte le regole applicate con esso, si estenderanno su tutta la pagina*/
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+html,
+body {
+    background-color: #fff; /*Colore di sfondo di html*/
+    color: #555; /*Colore del testo usato in html*/
+    font-family: 'Lato', 'Arial', sans-serif; /*Ho impostato diversi font, in ordine di priorità verrà letto il primo, se non presente il primo si passerà al secondo...e così via a seconda del browser*/
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility; /*INDAGARE - serve per ottimizzare la lettura della pagina sui browser (ma non è chiaro)*/
+    overflow-x: hidden; /*INDAGARE: aggiunto "BODY" e poi questa proprietà a seguito dell'ispezione della pagina a 790px, relativa la sezione CITIES - dove si vede una fuori-uscita della scritta*/
+}
+
+
+/*INDAGARE!!! - questo blocco viene introdotto per far sì che ci sia dello spazio tra le 8 immagini ed il titolo HOW IT WORKS. Spazio che viene mangiato dai float nei due "ul" - tant'è che la classe "clearfix" deve essere specificata all'interno dei due ul, prima di definirlo qui nel css - tant'è che questo aspetto si vede se si apre ispeziona (PROVARE)*/
+.clearfix {zoom: 1}
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+
+}
+
+
+/* --------------------- */
+/* REUSABLE COMPONENTS */
+/* --------------------- */
+
+/*INDAGARE - perchè è stata costruita questa regola? - è stata costruita per imporre una certa ampiezza nel browser, ossia: 1140px*/
+.row {
+    max-width: 1140px;
+    /*margin: 0 auto 0 auto; questa regola, è completa e presenta tutti i lati secondo questo ordine: top-right-bottom-left*/
+    margin: 0 auto; /*Tramite questa regola, si esprime lo stesso concetto soprastante, ma in modo sintetico: (top+bottom)-(right+left)*/
+}
+
+section {
+    padding: 80px 0; /*Ho stabilito un padding di 80px (sopra e sotto) per sezione e di 0px ai lati per sezione (dx e sx)*/
+}
+
+
+.box {
+   padding: 1%; /*Ho stabilito un padding dell'1% per ogni box definito in html. I box in questione sono stati definiti nelle seguenti sezioni: CITIES e FEATURES*/
+
+}
+
+/* --------------------- */
+/* HEADINGS */
+/* --------------------- */
+
+
+/*Raccolgo in un unico blocco le impostazioni comuni, ed il resto lo definisco in altri due blocchi separati di h1, h2, h3 ...*/
+h1,
+h2,
+h3 {
+    /*margin-top: 0;*/
+    /*margin-bottom: 20px;*/ /*introduco del margine sotto l'intestazione per avere dello spazio con i bottoni che stanno sotto*/
+    /*color: #fff;*/
+    /*font-size: 240%;*/ /*siccome per il tag "html" ho impostato 20px, per tutti gli altri elementi contenuti al suo interno userò le dimensioni % - quindi il 200% di 20px, significa che è 40px - questa convenzione risulta essere molto comoda, in quanto se in futuro si vogliono apporre modifiche alle dimensioni dell'intera pagina, si può agire solamente alla fonte (html) e tutti gli altri elementi verranno adattati di conseguenza essendo espressi in termini %*/
+    font-weight: 300; /*Indica lo spessore della scritta - ossia il livello di grassetto utilizzato*/
+    text-transform: uppercase; /*traforma il testo in maiuscolo*/
+    /*letter-spacing: 1px;*/ /*permette di impostare lo spazio di separazione tra le lettere di una parola - da usare specialmente nell'header*/
+    /*word-spacing: 4px;*/ /*permette di impostare lo spazio tra le parole - da usare specialmente nell'intestazione (header)*/
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 240%;
+    letter-spacing: 1px;
+
+}
+
+h2 {
+    font-size: 180%;
+    word-spacing: 2px;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+
+}
+
+h3 {
+    font-size: 110%;
+    margin-bottom: 15px;
+
+}
+
+/*INDAGARE!!! Introduco una pseudo-classe sotto l'elemento h2, per aggiungere una riga arancione di sottolineatura - infatti si chiama: "AFTER"*/
+h2:after {
+    display: block; /*INDAGARE = */
+    height: 2px; /*Imposto lo spessore della lineetta di sottolineatura di 2px*/
+    background-color: #e67e22; /*Imposto il solito colore arancio per la riga sotto h2*/
+    content: " "; /*INDAGARE = serve ogni volta che si crea una pseudo-classe, ma non ho ben compreso il significato*/
+    width: 100px; /*Imposto l'ampiezza della lineetta*/
+    margin: 0 auto; /*Serve per centrare la riga arancione sotto h2*/
+    margin-top: 30px; /*Serve per abbassare la linetta - lo distanzio dalla scritta di 30px*/
+}
+
+/* --------------------- */
+/* PARAGRAPHS */
+/* --------------------- */
+
+.long-copy {
+    line-height: 145%; /*Ho impostato una certa altezza di riga per il paragrafo della sezione FEATURES*/
+    width: 70%; /*Ho impostato una certa larghezza per la scritta*/
+    margin-left: 15%; /*Ho impostato solo il 15% a sinistra, così in automatico avrò il restante 15% a destra per completare il 100% dello spazio previsto*/
+
+}
+
+.box p {
+    font-size: 90%;
+    line-height: 145%;
+
+}
+
+
+/* --------------------- */
+/* ICONS */
+/* --------------------- */
+
+.icon-big {
+    font-size: 350%; /*Ho impostato la grandezza dell'icona - basta modificare il font-size per ingrandirla*/
+    display: block; /**/
+    color: #e67e22;
+    margin-bottom: 10px;
+
+}
+
+.icon-small {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    color: #e67e22;
+    font-size: 120%;
+    margin-right: 10px;
+
+    /*SECRETS TO ALIGN TEXT AND ICONS*/
+    line-height: 120%; /*Ho impostato un'altezza di linea o di riga*/
+    vertical-align: middle; /*Allineamento verticale centrato*/
+    margin-top: -5px; /*INDAGARE*/
+}
+
+/* --------------------- */
+/* LINKS */
+/* --------------------- */
+
+a:link,
+a:visited {
+    color: #e67e22;
+    text-decoration: none;
+    padding: 1px;
+    border-bottom: 1px solid #e67e22;
+    -webkit-transition: color 0.2s, border-bottom 0.2s;
+    transition: color 0.2s, border-bottom 0.2s;
+
+}
+
+a:hover,
+a:active {
+    color: #555;
+    border-bottom: 1px solid transparent;
+}
+
+
+
+/* --------------------- */
+/* BUTTONS */
+/* --------------------- */
+
+
+/*vado a defnire prima la classe generica dei due bottoni - poi andrò a definire le sottoclassi "full" e "ghost" - da notare :link e visited = questo significa che gli stati link e visited avranno lo stesso stile stabilita nella regola sottostante, perchè lo impongo io attraverso le pseudo classi = .btn:link, .btn:visited*/
+.btn:link,
+.btn:visited,
+input[type=submit] { /*Nella parentesi quadra specifico a chi si riferisce*/
+    display: inline-block; /*Permette di porre gli elementi in un unica linea (in una riga)*/
+    padding: 10px 30px; /*10px per top e bottom, 30px per left e right*/
+    font-weight: 300; /*qui imposto lo spessore del testo*/
+    text-decoration: none; /*con questa elimino le decorazioni di default del testo - tipo sottolineatura del link*/
+    border-radius: 200px; /*questa proprietà permette di arrotondare il bordo dell'elemento*/
+    -webkit-transition: background-color 0.2s, border 0.2s, color 0.2s;
+    transition: background-color 0.2s, border 0.2s, color 0.2s; /*permette di effettuare una transizione delle proprietà elencate entro un certo tempo al passaggio del mouse sul bottone*/
+}
+
+.btn-full:link,
+.btn-full:visited,
+input[type=submit] {
+    background-color: #e67e22; /*Ho stabilito un colore di fondo per il bottone - link: https://flatuicolors.com/palette/defo*/
+    border: 1px solid #e67e22; /*ho introdotto un bordo qui per avere le dimensioni del bottone pari al bottone ghost: se non aggiungo questo bordo, il bottone full risulta esser leggermente più piccolo rispetto al bottoe ghost*/
+    color: #fff; /*Ho imposto il colore della scritta del bottone pieno*/
+    margin-right: 15px;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited {
+    border: 1px solid #e67e22; /*ho introdotto un bordo di 1px, di tipo solido (linea continua), con il colore arancio*/
+    color: #e67e22;
+}
+
+/*Tipologie stili link:
+link =
+visited = link visitato
+active = link attivo
+hover = passaggio del mouse*/
+
+/*ATTENZIONE ALL'ORDINE - se questo blocco si trova prima, finisce che non vedo il funzionamento di hover sul primo bottone*/
+.btn:hover,
+.btn:active,
+input[type=submit]:hover,
+input[type=submit]:active {
+    background-color: #cf6d17; /*Ricorro a questo link: http://www.0to255.com/e67e22 - per vedere le varianti da 0 a 255 di un dato colore*/
+}
+
+/*Aggiungo questi due blocchi per arricchire gli effetti dei bottoni - */
+.btn-full:hover,
+.btn-full:active {
+    background-color: #cf6d17; /*Ho stabilito un colore di fondo per il bottone - link: https://flatuicolors.com/palette/defo*/
+    border: 1px solid #cf6d17; /*ho introdotto un bordo qui per avere le dimensioni del bottone pari al precedente, se non aggiungo questo bordo, il bottone full risulta esser leggermente più piccolo rispetto al bottoe ghost*/
+    color: #fff;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active {
+    border: 1px solid #cf6d17; /*ho introdotto un bordo di 1px, di tipo solido (linea continua), con il colore arancio*/
+    color: #fff;
+}
+
+
+/* --------------------- */
+/* HEADER */
+/* --------------------- */
+
+
+header {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url(img/hero.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(img/hero.jpg); /*La proprietà "linear-gradient permette di imporre un colore di fondo e di impostare un certo livello di trasparenza - che abbinata all'immagine, la pone quasi in secondo piano - vi sono più parametri, perchè si va dall'alto verso il basso - modificando il primo, si agisce sulla parte alta mentre si agisce sulla parte bassa dell'immagine modificando il secondo parametro*/
+    height: 100vh; /*INDAGARE - è un taglio immagine in termini di altezza*/
+    background-size: cover; /* "cover" = serve per impostare la visualizzazione dell'intera immagine a schermo - effettua un ridimensionamento dell'immagine di modo che sia visibile interamente*/
+    background-position: center;
+    background-attachment: fixed; /*Permette di avere l'immagine fissa in sottofondo mentre si scrolla in alto ed in basso*/
+}
+
+
+.hero-text-box {
+    position: absolute; /*così facendo posso impostare una posizione di tale elemento rispetto all'elemento padre - andando ad indicare successivamente una data posizione in X ed in Y*/
+    width: 1140px; /*indica l'ampiezza della riga, in questo modo l'elemento non si dispone su più righe diverse*/
+    top: 50%; /*indica lo spostamento che ho voluto imporre a questo blocco rispetto la sommità*/
+    left: 50%; /**/
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); /*questa trasformazione serve per imporre il "centraggio" della scritta...equilibra i due settaggi precedenti (X, Y)*/
+}
+
+
+.logo {
+    height: 100px; /*Ho impostato una altezza del logo di 100px*/
+    width: auto; /*Ho settato l'ampiezza del logo - avendo inserito sopra 100, con "AUTO" viene allargato in automatico a 100px*/
+    float: left; /*INDAGARE MEGLIO SUL FUNZIONAMENTO - Ho impostato una disposizione a sinistra del logo*/
+    margin-top: 20px;
+
+}
+
+.logo-black { /*Questo logo è stato introdotto per poter introdurre l'effetto di jQuery allo scorrimento della pagina*/
+    display: none; /*INDAGARE*/
+    height: 50px;
+    width: auto;
+    float: left;
+    margin: 5px 0;
+}
+
+
+.sticky .logo { display: none; } /*INDAGARE sul concatenamento - vi è un concatenamento tra sticky e logo???*/
+.logo-black { display: none; } /*Introdotto per l'effetto jQuery sulla barra di navigazione - il logo black non deve essere visibile in questo frangente*/
+
+
+/* --------------------- */
+/* MAIN NAVI */
+/* --------------------- */
+
+
+.main-nav {
+    float: right; /*Ho imposto una disposizione della lista a destra*/
+    list-style: none; /*Ho annullato lo stile degli elementi della lista - questo significa aver annullato i punti di lista*/
+    margin-top: 55px; /*Ho imposto una distanza dall'alto di 55px*/
+
+}
+
+.main-nav li {
+    display: inline-block; /*In questo modo ho impostato una disposizione in linea di tutti gli elementi della lista*/
+    margin-left: 40px; /*Ho impostato un margine di 40px per ogni elemento della lista sul lato sinistro*/
+}
+
+.main-nav li a:link,
+.main-nav li a:visited {
+    padding-top: 8px 0;
+    padding-bottom: 8px;
+    color: #fff;
+    text-decoration: none; /*Ho annullato lo stile della scritta relativa i link*/
+    text-transform: uppercase;
+    font-size: 90%; /*Qui volevo mettere 18px, ma per avere il valore percentuale devo fare questa operazione: (18/20=0,9x100=90%)*/
+    border-bottom: 2px solid transparent; /*Ho impostato un bordo in basso, spesso 2px, solido (linea continua) e trasparente*/
+    -webkit-transition: border-bottom 0.2s, color 02s;
+    transition: border-bottom 0.2s, color 02s; /*qui ho impostato una transizione del cambio entro un certo tempo (0.2secondi)*/
+
+}
+
+
+.main-nav li a:hover,
+.main-nav li a:active {
+    border-bottom: 2px solid #e67e22; /*al passaggio del mouse sopra questi bottoni, verranno sottolineati con uno spessore di 2px, di tipo solido e con un colore arancio*/
+    color: #e67e22; /*Colore della scritta che diventa arancione*/
+}
+
+
+/* --------------------- */
+/* MOBILE NAVI */
+/* ----------------------*/
+
+.mobile-nav-icon {
+    float: right;
+    margin-top: 30px;
+    cursor: pointer; /*INDAGARE!!!*/
+    display: none;
+}
+
+.mobile-nav-icon i {
+    font-size: 200%; /*Ho impostato la grandezza dell'icona*/
+    color: #fff;  
+}
+
+
+/* --------------------- */
+/* STICKY NAVI */
+/* --------------------- */
+
+.sticky {
+    position: fixed; /*Questo permette di fissare un dato elemento - significa che allo scorrimento, quell'elemento rimarrà fisso*/
+    top: 0; /*INDAGARE*/
+    left: 0; /*INDAGARE*/
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 2px #efefef; /*INDAGARE - già visto, ma non ricordo dove*/
+    z-index: 9999; /*Serve per porre la barra di navigazione in alto in primo piano, di modo che sia visibile quando passa attraverso le altre pagine - se non si usa, si rischia di avere una scarsa visibilità della barra di navigazione durante lo scorrimento*/
+}
+
+.sticky .main-nav { margin-top: 18px; } /*Questo elemento esiste già! però questo in particolar modo si riferisce alla classe "sticky" - perchè non si ha sovrapposizione? perchè conta l'ordine con cui vengono richiamati - CREDO SIA COSì (DA VERIFICARE)*/
+
+
+
+.sticky .main-nav li a:link,
+.sticky .main-nav li a:visited {
+    padding-top: 16px 0;
+    padding-bottom: 8px;
+    color: #555;
+
+}
+
+.sticky .logo { display: none; }
+.sticky .logo-black { display: block; }
+
+
+/* --------------------- */
+/* FEATURES */
+/* --------------------- */
+
+.section-features .long-copy {
+    margin-bottom: 30px;
+
+}
+
+
+
+/* --------------------- */
+/* MEALS */
+/* --------------------- */
+
+.section-meals {
+    padding: 0;
+
+}
+
+.meals-showcase {
+    list-style: none;
+    width: 100%; /*Sto indicando che voglio occupare l'intero spazio della pagina, da lato a lato*/
+
+}
+
+.meals-showcase li {
+    display: block;
+    float: left; /*Sto specificando una disposizione delle immagini che sia una di segito all'altra*/
+    width: 25%; /*Sto specificando che ciascuna immagine dovrà occupare il 25% dello spazio presente a dispozione. Ossia: 100:4=25*/
+
+}
+
+.meal-photo {
+    width: 100%; /*INDAGARE!!! - Del 25% soprastante, prendi il 100% dell'ampiezza*/
+    margin: 0;/*Impongo qui un margine pari a 0 per specificare che non voglio margini ai lati*/
+    overflow: hidden; /*Vedi sotto (transform) - permette di nascondere il ridimensionamento eccessivo in scala*/
+    background-color: #000; /*VEDI SOTTO - Introduco questa regola, per dare una sfumatura di colore alle immagine, che altrimenti verrebbero viste come sfocate */
+}
+
+.meal-photo img {
+    opacity: 0.7; /*Introduco un'opacità dell'immagine - poi introduco un background-color nel contenitore precedente*/
+    width: 100%; /*INDAGARE!!! - Si concatena al blocco precedente - permette di visualizzare l'intera immagine ridimensionata*/
+    height: auto; /*Impongo un adattamento in altezza dell'immagine in automatico*/
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15); /*Permette un ridimensionamento della scala della foto (ingrandita dell'1,15%) - questo però porta ad un ingrandimento di tutte le immagini, per ovviare a questo problema devo agire sul blocco che lo contiene (.meal-photo) ed aggiungere la proprietà (overflow: hidden)*/
+    -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+    transition: opacity 0.5s, -webkit-transform 0.5s;
+    transition: transform 0.5s, opacity 0.5s;
+    transition: transform 0.5s, opacity 0.5s, -webkit-transform 0.5s; /*Permette di integrare un'animazione dell'immagine al passaggio del mouse sopra di esso, animazione che avviene con un tempo di 0.5 secondi*/
+}
+
+.meal-photo img:hover {
+    opacity: 1; /*Introduco questa opacità qui, per avere un'animazione - l'immagine da scura si vedrà chiara (passaggio da 0.7 a 1.0)*/
+    -webkit-transform: scale(1.0); /*Il -webkit- viene introdotto per rendere la pagina responsiva anche con altri browser, si può fare in automatico attraverso un pacchetto installato su Brackets (autoprefixer - aggiungi i prefissi al testo selezionato)*/
+            transform: scale(1.0); /*Permette di aggiungere un effetto al passaggio del mouse sopra quella data immagine*/
+}
+
+
+/* --------------------- */
+/* HOW IT WORKS */
+/* --------------------- */
+
+.section-steps {
+    background-color: #f4f4f4; /*Introduco un colore di sfondo che è una sfumatura di bianco - pressochè impercettibile*/
+}
+
+/*.steps-box {
+    margin-top: 30px; Ho allontanato le due colonne dall'alto di 30px
+
+}/*l'ho annullato, perchè ho spostato questa proprietà all'interno del (first-child)*/
+
+/*Considero la prima colonna - (first-child)*/
+.steps-box:first-child {
+    text-align: right; /*allinea ciò che c'è nella prima colonna a destra*/
+    padding-right: 3%; /*lascia un padding del 3% alla destra*/
+    margin-top: 30px; /*Ho allontanato le due colonne dall'alto di 30px*/
+}
+
+/*Considero la seconda colonna - (last-child)*/
+.steps-box:last-child {
+    padding-left: 3%; /*lasci un padding del 3% alla sinistra*/
+    margin-top: 70px;
+
+}
+
+.app-screen {
+    width: 40%; /*Ho ridimensionato l'immagine del cell - l'ho ridotto al 40%*/
+}
+
+.works-step {
+    margin-bottom: 50px;
+}
+
+.works-step:last-of-type {
+    margin-bottom: 80px; /*INDAGARE*/
+}
+
+
+/*Qui definisco lo stile dei vari numeri - passaggi*/
+.works-step div {
+    color: #e67e22; /*Imposto il colore del numero*/
+    border: 2px solid #e67e22;
+    display: inline-block; /*INDAGARE*/
+    border-radius: 50%; /*Ho trasformato il quadrato in cui erano contenuti i numeri in cerchi*/
+    height: 55px; /*Ho definito l'altezza dei div relativi i numeri*/
+    width: 55px; /*Ho definito l'ampiezza dei div relativi i numeri = diametro*/
+    text-align: center; /* Ho centrato i numeri all'interno del cerchio*/
+    padding: 7px; /**/
+    float: left; /*Aggiungendo questa proprietà ho consentito l'affiancamento del testo ai numeri*/
+    font-size: 150%; /*Ho stabilito la grandezza dei numeri*/
+    margin-right: 25px; /*Ho inserito un margine tra numeri e descrizione a lato*/
+
+}
+
+.btn-app:link,
+.btn-app:visited {
+    border: 0;
+}
+
+
+.btn-app img {
+    height: 50px; /*Ho impostato l'altezza dei due bottoni*/
+    width: auto; /*Una volta impostata l'altezza, l'ampiezza può adattarsi in automatico - così non rishio di intaccare l'immagine*/
+    margin-right: 10px; /*imposto un margine di 10px a destra, per distanziare i due bottoni*/
+
+}
+
+
+/* --------------------- */
+/* CITIES */
+/* --------------------- */
+
+
+.box img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.city-feature {
+    margin-bottom: 5px;
+}
+
+
+/* --------------------- */
+/* TESTIMONIALS */
+/* --------------------- */
+
+.section-testimonials {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.78))), url(img/back-customers.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.78)), url(img/back-customers.jpg);
+    background-size: cover;
+    color: #fff;
+    background-attachment: fixed;
+}
+
+blockquote {
+    padding: 2%;
+    font-style: italic; /*Solitamente per le recensioni si usa lo stile "ITALIC" - posso incorporarlo, in quanto l'ho incluso nell'html*/
+    line-height: 145%;
+    position: relative;
+    margin-top: 40px;
+
+
+}
+
+blockquote:before {
+    content: "\201C"; /*All'interno delle virgolette metto il codice che ho recuperato qui: https://css-tricks.com/snippets/html/glyphs/ - questo permette di avere l'effetto desiderato*/
+    font-size: 500%;
+    display: block;
+    position: absolute; /*Dopo aver stabilito la posizione "absolute", devo assicurarmi che il suo parente abbia posizione "relative" - cosicchè lo stile che applico di sotto abbia effetto*/
+    top: -5px;
+    left: -5px;
+}
+
+cite {
+    font-size: 90%;
+    margin-top: 25px;
+    display: block; /*Impostandolo come elemento di blocco, ho suddiviso il blocco img+cite dal blocco di recensione che prima erano uniti - ho costruito un allineamento separato*/
+
+}
+
+/*cite:before {
+    content: "A";
+    font-size: 100%;
+}*/
+
+cite img {
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+
+}
+
+
+
+/* --------------------- */
+/* SIGN IN */
+/* --------------------- */
+
+.section-plans {
+    background-color: #f4f4f4;
+}
+
+.plan-box {
+    background-color: #fff;
+    border-radius: 5px;
+    width: 90%;
+    margin-left: 5%;
+    -webkit-box-shadow: 0 2px 2px #efefef;
+            box-shadow: 0 2px 2px #efefef; /*INDAGARE*/
+
+
+}
+
+
+
+.plan-box div {
+    padding: 15px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.plan-box div:first-child {
+    background-color: #fcfcfc; /*Ho cambiato leggermente il colore del blocco dove è contenuto il prezzo ed ho arrontondato i bordi in alto*/
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+
+.plan-box div:last-child {
+    text-align: center; /*Con questo interevento ho centrato i bottoni dei vari blocchi di chiascuna scatola*/
+    border: 0;
+}
+
+
+.plan-price {
+    font-size: 300%;
+    margin-bottom: 10px;
+    font-weight: 100; /*E' buona norma usare un peso leggero per testi grandi*/
+    color: #e67e22;
+}
+
+.plan-price span {
+    font-size: 30%; /*Essendo parente del precedente che è 300%, devo scendere sotto il 100% se voglio il testo più piccolo, altrimenti andare sopra il 100% se lo voglio più grande del padre*/
+    font-weight: 300; /*E' buona norma usare un peso maggiore per testi piccoli*/
+
+}
+
+.plan-price-meal {
+    font-size: 80%;
+}
+
+.plan-box ul {
+    list-style: none;
+}
+
+
+.plan-box ul li {
+    padding: 5px 0;
+}
+
+
+/* --------------------- */
+/* FORM */
+/* --------------------- */
+
+.contact-form {
+    width: 60%;
+    margin: 0 auto;
+}
+
+input[type=text],   /*Applico [...] solo se voglio applicare le modifiche su un dato elemento*/
+input[type=email],
+select,
+textarea {
+    width: 100%;
+    padding: 7px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+
+}
+
+textarea {
+    height: 100px;
+
+}
+
+input[type=checkbox] {
+    margin: 10px 5 px 10px 0; /*Ho inserito dei margini attorno al checkbox*/
+}
+
+*:focus {outline: none;} /*INDAGARE*/
+
+/* --------------------- */
+/* FOOTER */
+/* --------------------- */
+
+footer {
+  background-color: #333;
+  padding: 50px;
+  font-size: 80%;
+}
+
+.footer-nav {
+  float: left;
+  list-style: none;
+}
+
+.social-links {
+  list-style: none;
+  float: right;
+}
+
+.footer-nav li,
+.social-links li {
+  margin-right: 20px;
+  display: inline-block;
+}
+
+.footer-nav li:last-child,
+.social-links li:last-child {
+  margin-right: 0;
+}
+
+
+
+.footer-nav li a:link,
+.footer-nav li a:visited,
+.social-links li a:link,
+.social-links li a:visited {
+  text-decoration: none;
+  color: #888;
+  border: 0;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+}
+
+.footer-nav li a:hover,
+.footer-nav li a:active {
+  color: #ddd;
+}
+
+.social-links li a:link,
+.social-links li a:visited {
+  font-size: 160%;
+}
+
+.ion-social-facebook,
+.ion-social-twitter,
+.ion-social-googleplus,
+.ion-social-instagram {
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+}
+
+
+.ion-social-facebook:hover {
+  color: #3b5998;
+}
+
+.ion-social-twitter:hover {
+  color: #00aced;
+}
+
+.ion-social-googleplus:hover {
+  color: #517fa4;
+}
+
+.ion-social-instagram:hover {
+  color: #3b5998;
+}
+
+footer p { /*ATTENZIONE: Inizialmente avevo usato SPAN anzichè P, e non avevo l'allineamento centrato - perchè?*/
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}
+
+
+
+
+/* --------------------- */
+/* ANIMATIONS */
+/* --------------------- */
+
+/*Non considero il .js--wp-4 in quanto non appartiene alla categoria "fadeIn", ma è un "pulse"*/
+
+.js--wp-1,
+.js--wp-2,
+.js--wp-3  {
+    opacity: 0; /*Qui anzichè usare il "display: one;" uso l'opacità - l'altro non funzionerebbe*/
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+}
+
+.js--wp-4 {
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+}
+
+.js--wp-1.animated, 
+.js--wp-2.animated, 
+.js--wp-3.animated  {
+    opacity: 1; /*In questo modo, chiedo che vi sia un'animazione dall'opacità nulla a quella intera*/
+}
+

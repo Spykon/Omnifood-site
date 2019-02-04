@@ -1,0 +1,145 @@
+/*Questa pagina serve soltanto per rendere la pagina responsiva rispetto i diversi livelli di breakpoint*/
+
+
+/*Procedimento:
+1) Apro la pagina;
+2) Apro ispeziona;
+3) Allargo e riduco la pagina fino ai vari breakpoint;
+4) Per ciascun breakpoint osservo il comportamento delle varie sezioni che lo compongono;
+5) Per le sezioni in cui il design non è responsivo, apporto le dovute modifiche*/
+
+
+/*Big tablets to 1200px (widhts smallet than the 1040pcx row)*/
+
+@media only screen and (max-width: 1200px) {
+    .hero-text-box {
+        padding: 0 2%;
+        width: 100%;
+    }
+    .row { padding: 0 2%; } 
+    
+}
+
+
+
+
+/*Small tablets to big tablets: from 768px to 1023px*/
+
+@media only screen and (max-width: 1023px) {
+    body { font-size: 18px; } /*Ho adattato la misura della scritta sul body - avendo espresso tutto il resto in termini percentuali, questo fa si che non si debba intervenire più sugli altri elemnti che si adeguano di conseguenza*/
+    section { padding: 60px 0; }
+    .long-copy {
+        width: 80%; /*Ho impostato una certa larghezza per la scritta*/
+        margin-left: 10%; /*Ho impostato solo il 10% a sinistra, così in automatico avrò il restante 10% a destra per completare il 100% dello spazio previsto*/
+    }
+    
+    .steps-box { margin-top: 10px; }
+    .steps-box:last-child { margin-top: 10px; }
+    .works-step { margin-bottom: 40px; }
+    .works-step:last-of-type { margin-bottom: 60px; }
+    
+    .app-screen { width: 50%; }
+    .icon-small { 
+        width: 17px;
+        margin-left: 5px;
+    }
+    .city-feature { font-size: 90%; }
+    
+    .plan-box {
+        width: 100%;
+        margin-left: 0%;
+    }
+    
+    .plan-price {
+        font-size: 250%; /*Ho ridimensionato il prezzo mensile*/
+        }
+    .content-form { width: 80%; }
+}
+
+
+
+
+/*Small phones to small tablets: from 481px to 767px*/
+
+@media only screen and (max-width: 767px) {
+    body { font-size: 16px; }
+    section { padding: 30px 0; }
+    
+    .row,
+    .hero-text-box { padding: 0 4%; }
+    
+    .col {
+        margin: 0 0 4% 0;
+        width: 100%;
+    }
+    
+    .main-nav { display: none; } /*Ho nascosto per ora la barra di navigazione, in quanto verrà definita meglio nella sezione successiva - ora che introduco il bottone ad hamburgher posso commentare il tutto - ed inizio (sotto) a dare uno stile a questo blocco -- lo rendo nuovamente visibile per gestire l'apparizione o meno del menu a tendina*/
+    
+    .mobile-nav-icon { display: inline-block; }
+    .main-nav {
+        float: left;
+        margin-top: 35px; /*Con questi valori agisco sul menu a tendina*/
+        margin-left: 25px; /*Con questi valori agisco sul menu a tendina*/
+        
+    }
+    
+    .main-nav li {
+        display: block;
+    }
+    
+    .main-nav li a:link,
+    .main-nav li a:visited {
+        display: block;
+        border: 0;
+        padding: 10px 0; /*Agisco sul menu a tendina*/
+        font-size: 100%;
+    }
+
+     .sticky .main-nav { margin-top: 10px; } /*Questo elemento esiste già! però questo in particolar modo si riferisce alla classe "sticky" - perchè non si ha sovrapposizione? perchè conta l'ordine con cui vengono richiamati - CREDO SIA COSì (DA VERIFICARE)*/
+
+
+
+    .sticky .main-nav li a:link,
+    .sticky .main-nav li a:visited { padding-top: 10px 0; }
+
+    .sticky .mobile-nav-icon { margin-top: 10px; } /*Ho introdotto questo elemento per gestire l'hamburger*/
+    .sticky .mobile-nav-icon i { color: #555; } /*Ho introdotto questo blocco per colorare l'hamburgher qaundo scendo nella navigazione e sono nelle sezioni chiare*/
+    
+    
+    
+    
+    h1 { font-size: 180%; } 
+    h2 { font-size: 150%; }
+    
+    .long-copy {
+        width: 100%;
+        margin-left: 0%;
+    }
+    
+    .works-step { margin-bottom: 20px; }
+    .works-step:last-of-type { margin-bottom: 20px; }
+    
+    .steps-box:first-child { text-align: center; }
+    .app-screen { font-size: 40%; }
+    
+    .works-step div {
+        height: 40px;
+        width: 40px;
+        margin-right: 15px;
+        padding: 4px;
+        font-size: 120%;
+        
+    }
+}
+
+
+
+
+/*Small phones: from 0 to 480px*/
+
+@media only screen and (max-width: 480px) {
+    section { padding: 25px 0; }
+    
+    .contact-form { width: 100%; }
+    
+}
